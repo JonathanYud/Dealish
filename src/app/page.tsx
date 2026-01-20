@@ -5,8 +5,8 @@ import DealCard from "../app/components/DealCard"
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="p-4 bg-white shadow">
-        <h1 className="text-2xl font-bold text-blue-600">Dealish</h1>
+      <header className="p-4 bg-white shadow flex justify-beginning">
+        <img src="/logo2.png" alt="Dealish Logo" className="h-10 w-auto" />
       </header>
 
       <main className="max-w-8xl mx-auto p-4">
