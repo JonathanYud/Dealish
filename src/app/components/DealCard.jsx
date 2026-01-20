@@ -1,6 +1,26 @@
 import { Heart, ThumbsUp, Share2, Map, Info } from "lucide-react"
 
+function getDealTime(start, end) {
+  const now = new Date();
+  const startTime = new Date(start);
+  const endTime = new Date(end);
+  if (now < startTime) {
+    const diff = startTime - now;
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    return { status: 'upcoming', text: `Starts in ${hours}h ${minutes}m` };
+  } else if (now > endTime) {
+    return { status: 'past', text: 'Expired' };
+  } else {
+    const diff = endTime - now;
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    return { status: 'running', text: `Ends in ${hours}h ${minutes}m` };
+  }
+}
+
 export default function DealCard({ deal }) {
+  const time = getDealTime(deal.start_time, deal.end_time);
   return (
     <div className="flex bg-white rounded-xl shadow p-3 items-start gap-3 border hover:shadow-md transition">
       {/* Image */}
@@ -18,8 +38,8 @@ export default function DealCard({ deal }) {
         </h3>
 
         <p className="text-sm text-gray-700">
-          {deal.start_time} – {deal.end_time}{" "}
-          <span className="text-gray-500 text-xs">({deal.ends_in})</span>
+          {deal.start_time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} – {deal.end_time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}{" "}
+          <span className="text-gray-500 text-xs">({time.text})</span>
         </p>
 
         <p className="text-sm text-gray-600">{deal.description}</p>
