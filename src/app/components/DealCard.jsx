@@ -22,13 +22,18 @@ function getDealTime(status, start, end) {
 export default function DealCard({ deal }) {
   const time = getDealTime(deal.status, deal.start_time, deal.end_time);
   return (
-    <div className="flex bg-white rounded-xl shadow p-3 items-start gap-3 border hover:shadow-md transition">
+    <div className="relative bg-white rounded-2xl shadow p-5 items-start gap-3 pt-16 hover:shadow-md transition">
       {/* Image */}
-      <img
-        src={deal.image}
-        alt={deal.title}
-        className="w-24 h-24 rounded-lg object-cover flex-shrink-0"
-      />
+      <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-[88%]"> 
+        <img
+          src={deal.image}
+          alt={deal.title}
+          className="rounded-2xl
+          shadow[0_14px_40px_rgba(0,0,0,0.22)]
+          w-full h-24 object-cover 
+          transition-all duration-300"
+        />
+      </div>
 
       {/* Deal Info */}
       <div className="flex flex-col flex-grow">
@@ -38,7 +43,7 @@ export default function DealCard({ deal }) {
         </h3>
 
         <p className="text-sm text-gray-700">
-          {deal.start_time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} – {deal.end_time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}{" "}
+          {deal.start_time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} - {deal.end_time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}{" "}
           <span className="text-gray-500 text-xs">({time})</span>
         </p>
 
