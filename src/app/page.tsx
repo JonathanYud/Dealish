@@ -10,20 +10,16 @@ export default function Home() {
       </header>
 
       <main className="max-w-8xl mx-auto p-4">
-        <header className = "text-2xl font-bold text-black-600">Current Deals</header>
+        <header className = "text-2xl font-bold text-black-600 mb-10">Current Deals</header>
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md: grid-cols-1 lg:grid-cols-4">
           {deals.filter(deal => deal.status === "running").map(deal => (
-            <a key={deal.id} href={`/deals/${deal.id}`}>
-              <DealCard key={deal.id} deal={deal} />
-            </a>
+            <DealCard key={deal.id} deal={deal} />
           ))}
         </div>
-        <header className = "text-2xl font-bold text-black-600">Upcoming Deals</header>
+        <header className = "text-2xl font-bold text-black-600 mb-10">Upcoming Deals</header>
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md: grid-cols-1 lg:grid-cols-4">
           {deals.filter(deal => deal.status === "upcoming").map(deal => (
-            <a key={deal.id} href={`/deals/${deal.id}`}>
-              <DealCard key={deal.id} deal={deal} />
-            </a>
+            <DealCard key={deal.id} deal={deal} />
           ))}
         </div>
       </main>
